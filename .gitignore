@@ -1,0 +1,16 @@
+# do not repo results of builds or runs
+/target
+/results
+/.temp_files
+/tmp
+
+# directory and file droppings from the developers
+# OS and editors need not be repo'ed
+.vscode/
+.DS_store
+.idea/
+
+# include everything in tests including
+# file types that may already be ingored
+!tests/**
+
