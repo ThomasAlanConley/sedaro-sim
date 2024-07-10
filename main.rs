@@ -153,6 +153,6 @@ fn main() {
     }
 
     let json_data = serde_json::to_string_pretty(&store.store).unwrap();
-    let mut file = File::create("../sedaro-nano/app/public/data.json").unwrap();
+    let mut file = File::create("./app/public/data.json").unwrap();
     file.write_all(json_data.as_bytes()).unwrap();
 }
