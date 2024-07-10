@@ -1,0 +1,30 @@
+version: "0.42"
+services:
+  sedaro-digital:
+    build:
+      context: .
+      dockerfile: Dockerfile.simulation_in_rust
+    image: "sedaro/simulation"
+    network_mode: "host"
+    volumes:
+      - ./app/public/:/public/
+      - ./app/:/app/
+      - /app/node_modules/
+
+  #
+  # Simple node based gui (AKA Sedaro-nano)
+  # This is just the GUI... no data is generated here
+  #
+  sedaro-gui:
+    build:
+      context: .
+      dockerfile: Dockerfile.node_app
+    ports:
+      - "3000:3000"
+    image: "sedaro/gui"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./app/:/app/
+      - /app/node_modules/
+    command: /bin/sh -c "npm start"
